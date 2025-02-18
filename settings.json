@@ -1,5 +1,6 @@
 {
     "latex-workshop.latex.tools": [
+      //useful link: https://nelsonaloysio.medium.com/setting-up-vs-code-to-write-in-latex-using-latexmk-and-biber-plus-extras-b4b37c844495
       {
         "name": "pdflatex",
         "command": "pdflatex",
@@ -18,15 +19,34 @@
         ]
       },
       {
-        "name": "pdflatex",
-        "command": "pdflatex",
+        "name": "biber",
+        "command": "biber",
+        "args": [
+          "%DOCFILE%"
+        ]
+      },
+      {
+        "name": "xelatex",
+        "command": "xelatex",
         "args": [
           "-synctex=1",
-          "-interaction=nonstopmode",
-          "-file-line-error",
-          "%DOC%"
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "%DOC%"
         ]
-      }
+      },
+      {
+      "name": "latexmk",
+      "command": "latexmk",
+      "args": [
+        "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "-pdf",
+            "-outdir=%OUTDIR%",
+            "%DOC%"
+      ]
+    },
     ],
     "latex-workshop.latex.recipes": [
       {
@@ -37,9 +57,27 @@
           "pdflatex",
           "pdflatex"
         ]
-      }
+      },
+      {
+        "name": "latexmk",
+        "tools": [
+            "latexmk",
+        ]
+    },
+    {
+      "name": "biber",
+      "tools": [
+        "biber",
+      ]
+    },
+    {
+      "name": "bibtex",
+      "tools": [
+        "bibtex",
+      ]
+    }
     ],
-    "latex-workshop.latex.autoBuild.run": "onFileChange",
+    "latex-workshop.latex.autoBuild.run": "never",
     "latex-workshop.view.pdf.viewer": "tab",
     "latex-workshop.view.pdf.invertMode.enabled": "always",
     "latex-workshop.view.pdf.invertMode.sepia": 1,
@@ -52,4 +90,5 @@
     "editor.fontFamily": "TeX Gyre Schola",
     "editor.fontLigatures": true,
     "editor.fontSize": 17,
+    "git.confirmSync": false,
   }
